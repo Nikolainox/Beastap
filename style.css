@@ -1,119 +1,87 @@
-/* ===== Evolve 8.0 – Pelimäinen UI, ei lomakelaatikoita ===== */
-* { box-sizing:border-box; }
-html, body { margin:0; padding:0; height:100%; }
-body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color:#e6edf3; background:#090d12; overflow:hidden;
+/* ===== Evolve 8.1 – pelimäinen, emoji-napit, ilman lomakkeita ===== */
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+     color:#e6edf3;background:#090d12;overflow:hidden}
+
+/* Elävä tausta – aina UI:n takana */
+#bg{position:fixed;inset:0;z-index:-1;transition:background 900ms ease}
+.theme-speed    #bg{background:
+  radial-gradient(1000px 700px at 20% 20%,#1452ff22,transparent 60%),
+  radial-gradient(900px 650px at 80% 80%,#00b3ff22,transparent 55%),
+  linear-gradient(180deg,#061222,#081424)}
+.theme-strength #bg{background:
+  radial-gradient(1000px 700px at 20% 20%,#ff7b0022,transparent 60%),
+  radial-gradient(900px 650px at 80% 80%,#ff3b0022,transparent 55%),
+  linear-gradient(180deg,#140a06,#1a0f08)}
+.theme-endurance#bg{background:
+  radial-gradient(1000px 700px at 20% 20%,#02ff7a22,transparent 60%),
+  radial-gradient(900px 650px at 80% 80%,#09a95f22,transparent 55%),
+  linear-gradient(180deg,#06140b,#0b1a10)}
+.theme-agility  #bg{background:
+  radial-gradient(1000px 700px at 20% 20%,#a100ff22,transparent 60%),
+  radial-gradient(900px 650px at 80% 80%,#ff00d422,transparent 55%),
+  linear-gradient(180deg,#110615,#17081f)}
+.theme-mind     #bg{background:
+  radial-gradient(1000px 700px at 20% 20%,#00ffd522,transparent 60%),
+  radial-gradient(900px 650px at 80% 80%,#00a39b22,transparent 55%),
+  linear-gradient(180deg,#061411,#08201b)}
+
+.game{
+  min-height:100vh; width:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+  gap:12px; padding:14px 16px 20px
 }
 
-/* Hidas elävä tausta (vaihdetaan luokilla) */
-#bg {
-  position:fixed; inset:0;
-  background: radial-gradient(1200px 800px at 20% 20%, #133b7a33, transparent 60%),
-              radial-gradient(1000px 700px at 80% 80%, #0e3f2033, transparent 55%),
-              linear-gradient(180deg, #0b0f14, #0b0f14);
-  transition: background 900ms ease;
-  z-index:0;
-}
-.theme-speed   #bg { background:
-  radial-gradient(1200px 800px at 20% 20%, #1452ff22, transparent 60%),
-  radial-gradient(1000px 700px at 80% 80%, #00b3ff22, transparent 55%),
-  linear-gradient(180deg,#061222,#081424); }
-.theme-strength #bg { background:
-  radial-gradient(1200px 800px at 20% 20%, #ff7b0022, transparent 60%),
-  radial-gradient(1000px 700px at 80% 80%, #ff3b0022, transparent 55%),
-  linear-gradient(180deg,#140a06,#1a0f08); }
-.theme-endurance #bg { background:
-  radial-gradient(1200px 800px at 20% 20%, #00ff7a22, transparent 60%),
-  radial-gradient(1000px 700px at 80% 80%, #00994d22, transparent 55%),
-  linear-gradient(180deg,#06140b,#0b1a10); }
-.theme-agility #bg { background:
-  radial-gradient(1200px 800px at 20% 20%, #a100ff22, transparent 60%),
-  radial-gradient(1000px 700px at 80% 80%, #ff00d422, transparent 55%),
-  linear-gradient(180deg,#110615,#17081f); }
-.theme-mind    #bg { background:
-  radial-gradient(1200px 800px at 20% 20%, #00ffd522, transparent 60%),
-  radial-gradient(1000px 700px at 80% 80%, #00a39b22, transparent 55%),
-  linear-gradient(180deg,#061411,#08201b); }
+/* Yläpalkki */
+.topbar{width:100%; display:flex; align-items:center; justify-content:space-between; opacity:.95}
+.brand{font-weight:600; letter-spacing:.2px}
+.menu{display:flex; gap:8px}
+.menu button{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+  color:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
 
-.game {
-  position:relative; height:100%; width:100%;
-  display:grid; grid-template-rows: 1fr auto auto; gap:14px;
-  align-items:center; justify-items:center; z-index:1;
-  padding:24px;
-}
+/* Avatar-keskusalue */
+.center{text-align:center; user-select:none}
+.avatar{font-size:96px; line-height:1; display:inline-grid; place-items:center;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,.35)); transform-origin:center}
+.avatar.bump{animation:bump .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes bump{0%{transform:scale(.85)}60%{transform:scale(1.1)}100%{transform:scale(1)}}
+h1{margin:6px 0 2px; font-size:28px; text-shadow:0 2px 18px rgba(0,0,0,.25)}
+.muted{opacity:.85}
+.hint{opacity:.75;margin:8px 0 0}
 
-/* Keskiosa: avatar + nimi + polku + palkki */
-.center { text-align:center; user-select:none; }
-.avatar {
-  font-size:96px; line-height:1; filter: drop-shadow(0 10px 30px rgba(0,0,0,.35));
-  transform-origin:center; display:inline-grid; place-items:center;
-  transition: transform 250ms ease;
-}
-.avatar.bump { animation:bump .45s cubic-bezier(.2,.8,.2,1); }
-@keyframes bump { 0%{ transform: scale(.85) } 60%{ transform:scale(1.1) } 100%{ transform:scale(1) } }
+progress{width:320px;height:14px;appearance:none;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.08)}
+progress::-webkit-progress-bar{background:rgba(255,255,255,.08)}
+progress::-webkit-progress-value{background:linear-gradient(90deg,#8b5cf6,#22c55e,#f59e0b,#ef4444);transition:width 500ms}
 
-h1 { margin:10px 0 4px 0; font-size:28px; text-shadow:0 2px 20px rgba(0,0,0,.25); }
-#track { margin:0 0 12px 0; opacity:.8; }
-progress {
-  width: 300px; height: 14px; appearance:none; border-radius:8px; overflow:hidden;
-  background:rgba(255,255,255,.08);
+.buttons{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
+.buttons button{
+  width:64px;height:64px;font-size:30px;border-radius:50%;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+  color:#fff; display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 8px 24px rgba(0,0,0,.28);
+  transition:transform 70ms, background 180ms, border-color 180ms; -webkit-tap-highlight-color:transparent
 }
-progress::-webkit-progress-bar { background: rgba(255,255,255,.08); }
-progress::-webkit-progress-value {
-  background: linear-gradient(90deg, #8b5cf6, #22c55e, #f59e0b, #ef4444);
-  transition: width 500ms cubic-bezier(.2,.8,.2,1);
-}
-progress::-moz-progress-bar { background: #3b82f6; }
+.buttons button:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.28)}
+.buttons button:active{transform:translateY(2px) scale(.98)}
 
-/* Isot emoji-napit alareunaan */
-.buttons {
-  display:flex; gap:16px; flex-wrap:wrap; justify-content:center; align-items:center;
-  margin-bottom:8px;
-}
-.buttons button {
-  font-size:30px; width:64px; height:64px; border-radius:50%;
-  border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.08);
-  color:#fff; cursor:pointer; display:grid; place-items:center;
-  box-shadow: 0 6px 20px rgba(0,0,0,.25);
-  transition: transform 80ms ease, background 200ms ease, border-color 200ms ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.buttons button:active { transform: translateY(2px) scale(.98); }
-.buttons button:hover { background:rgba(255,255,255,.12); border-color: rgba(255,255,255,.25); }
-
-/* Pieni ylävalikko */
-#menu { display:flex; gap:10px; opacity:.9; }
-#menu button {
-  font-size:14px; padding:8px 12px; border-radius:999px;
-  border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08);
-  color:#fff; cursor:pointer;
+.foot{width:100%; display:flex; justify-content:center}
+.chips{display:flex; gap:8px; flex-wrap:wrap}
+.chips span{
+  padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18); font-size:13px
 }
 
-/* Toast (tason/polun muutos, info) */
-.toast {
-  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-  background:rgba(12,12,16,.8); border:1px solid rgba(255,255,255,.15);
-  padding:10px 14px; border-radius:12px; backdrop-filter: blur(6px);
-  box-shadow: 0 12px 28px rgba(0,0,0,.4);
-}
-.toast span { white-space:nowrap; }
+/* Toast + partikkelit */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;
+  background:rgba(12,12,16,.82);border:1px solid rgba(255,255,255,.15);
+  padding:10px 14px;border-radius:12px;backdrop-filter:blur(6px);box-shadow:0 12px 28px rgba(0,0,0,.4)}
+.particle{position:fixed;pointer-events:none;font-size:18px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.35);
+  animation:floatUp .9s ease-out forwards}
+@keyframes floatUp{0%{opacity:0;transform:translateY(8px) scale(.9)}15%{opacity:1}
+ 100%{opacity:0;transform:translateY(-36px) scale(1.05)}}
 
-/* Kelluvat partikkelit (“+10 💪”) */
-.particle {
-  position:fixed; pointer-events:none; font-size:18px; color:#fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,.35);
-  animation: floatUp .9s ease-out forwards;
-}
-@keyframes floatUp {
-  0% { opacity:0; transform: translateY(8px) scale(.9); }
-  15% { opacity:1; }
-  100% { opacity:0; transform: translateY(-36px) scale(1.05); }
-}
-
-/* Responsiivisuus */
 @media (max-width:480px){
-  .avatar { font-size:80px; }
-  progress { width: 240px; }
-  .buttons button { width:60px; height:60px; font-size:28px; }
+  .avatar{font-size:82px} progress{width:260px}
+  .buttons button{width:60px;height:60px;font-size:28px}
 }
