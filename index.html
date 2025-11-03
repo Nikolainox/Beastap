@@ -3,36 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Eläinkunta – Evolve 8.0</title>
+  <title>Eläinkunta – Evolve 8.1</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <main class="game">
-    <div id="bg"></div>
-    <div class="center">
-      <div id="avatar" class="avatar" aria-live="polite">🪱</div>
+<body class="theme-speed">
+  <div id="bg" aria-hidden="true"></div>
+
+  <main class="game" role="main">
+    <header class="topbar">
+      <div class="brand">🪱→🧑 Evolve 8.1</div>
+      <nav class="menu">
+        <button id="export" title="Lataa JSON">📤</button>
+        <button id="reset" title="Nollaa kaikki">🔁</button>
+      </nav>
+    </header>
+
+    <section class="center" aria-live="polite">
+      <div id="avatar" class="avatar" role="img" aria-label="Nykyinen eläin">🪱</div>
       <h1 id="animalName">Mato</h1>
-      <p id="track">Polku: Tasapainoinen</p>
-      <progress id="bar" max="100" value="0"></progress>
-    </div>
+      <p id="track" class="muted">Polku: Tasapainoinen</p>
+      <progress id="bar" max="100" value="0" aria-label="Evoluutiopalkki"></progress>
+      <p id="hint" class="hint">Seuraavaksi: lisää nopeutta 🏃‍♂️</p>
+    </section>
 
-    <div class="buttons">
-      <button data-act="legs">🦵</button>
-      <button data-act="push">💪</button>
-      <button data-act="pull">🧗‍♂️</button>
-      <button data-act="run">🏃‍♂️</button>
-      <button data-act="mind">🧘</button>
-    </div>
+    <section class="buttons" aria-label="Toimintanapit">
+      <button data-act="legs"  aria-label="Jalat">🦵</button>
+      <button data-act="push"  aria-label="Työntö">💪</button>
+      <button data-act="pull"  aria-label="Veto">🧗‍♂️</button>
+      <button data-act="run"   aria-label="Juoksu">🏃‍♂️</button>
+      <button data-act="mind"  aria-label="Mielitreeni">🧘</button>
+    </section>
 
-    <div id="toast" class="toast" hidden>
-      <span id="toastText"></span>
-    </div>
-
-    <div id="menu">
-      <button id="export">📤 Tallenna JSON</button>
-      <button id="reset">🔁 Nollaa</button>
-    </div>
+    <footer class="foot">
+      <div class="chips">
+        <span id="chip-legs">🦵 0</span>
+        <span id="chip-push">💪 0</span>
+        <span id="chip-pull">🧗‍♂️ 0</span>
+        <span id="chip-run">🏃 0 km / 0 min</span>
+        <span id="chip-mind">🧘 0 min</span>
+      </div>
+    </footer>
   </main>
+
+  <div id="toast" class="toast" hidden><span id="toastText"></span></div>
+
   <script src="app.js"></script>
 </body>
 </html>
