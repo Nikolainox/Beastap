@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Eläinkunta – Evoluutio & Painoindeksi</title>
+  <title>Eläinkunta – Evolve 7.0</title>
   <link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
   <header class="app-header">
-    <h1>🪱 → 🧑 Eläinkunnan Evoluutio</h1>
-    <p>Syötä toistot lihasryhmittäin – kehityt eläinkunnassa. Kaikki tallentuu laitteellesi.</p>
+    <h1>🪱 → 🧑 Eläinkunta – Evolve 7.0</h1>
+    <p>Syötä toistot, juoksu ja mielitreeni. Sovellus valitsee sinulle fiksun, nopean tai vahvan eläimen tekojesi perusteella.</p>
   </header>
 
   <main class="container">
@@ -20,39 +20,39 @@
         <h2 id="avatar-name">Mato</h2>
         <div class="progress-wrap">
           <label for="evo-progress">Evoluutio</label>
-          <progress id="evo-progress" value="0" max="100" aria-valuemin="0" aria-valuemax="100"></progress>
+          <progress id="evo-progress" value="0" max="100"></progress>
           <span id="evo-level-text" class="muted">Taso 0 • 0%</span>
         </div>
         <p id="branch-text" class="muted">Polku: Tasapainoinen</p>
-        <p id="next-text" class="muted">Seuraavaksi: 🪸 Meduusa</p>
+        <p id="next-text" class="muted">Seuraavaksi: —</p>
         <p id="last-update" class="muted small">Viimeisin päivitys: —</p>
       </div>
     </section>
 
-    <!-- Timeline -->
+    <!-- Top-5 lähimmät eläimet -->
     <section class="timeline">
-      <h3>Matka</h3>
-      <div id="timeline-bar" class="timeline-bar" aria-label="Evoluutiopolun aikajana"></div>
+      <h3>Top-5 lähimmät eläimet</h3>
+      <div id="timeline-bar" class="timeline-bar" aria-label="Lähimmät lajit"></div>
     </section>
 
-    <!-- Quick presets -->
+    <!-- Presetit -->
     <section class="presets-card">
       <h3>Liike-presetit</h3>
       <div class="presets">
         <button class="preset" data-preset="squat">🏋️‍♂️ Kyykky +10</button>
         <button class="preset" data-preset="bench">🛠 Penkki +10</button>
         <button class="preset" data-preset="deadlift">🐍 Mave +8</button>
-        <button class="preset" data-preset="pullup">🪜 Leuanveto +8</button>
+        <button class="preset" data-preset="pullup">🪜 Leuat +8</button>
         <button class="preset" data-preset="pushup">🤸 Punnerrus +5</button>
         <button class="preset" data-preset="row">🚣 Soutu +6</button>
         <button class="preset" data-preset="ohp">🔩 OHP +6</button>
         <button class="preset" data-preset="plank">🧱 Lankku +60s</button>
-        <button class="preset" data-preset="crunch">🌀 Vatsarutistus +20</button>
+        <button class="preset" data-preset="mind10">🧘 Mieli +10min</button>
       </div>
-      <p class="hint">Presetit täyttävät alla olevat kentät automaattisesti (esim. mave lisää jalat+veto+core).</p>
+      <p class="hint">Presetit kirjaavat suoraan — ei tarvitse täyttää kenttiä.</p>
     </section>
 
-    <!-- Inputs -->
+    <!-- Toistot -->
     <section class="input-card">
       <h3>Lisää toistoja</h3>
       <div class="grid">
@@ -67,14 +67,40 @@
       </div>
     </section>
 
+    <!-- Juoksu -->
+    <section class="cardio-card input-card">
+      <h3>Cardio (juoksu)</h3>
+      <div class="grid">
+        <div class="group"><label for="run-km">Matka (km)</label><input id="run-km" type="number" min="0" step="0.1" placeholder="0.0"/></div>
+        <div class="group"><label for="run-min">Aika (min)</label><input id="run-min" type="number" min="0" step="1" placeholder="0"/></div>
+      </div>
+      <div class="actions">
+        <button id="add-run" class="ghost">Lisää juoksu</button>
+      </div>
+      <p class="hint">Nopeus = (km / min) × 60. Vaikuttaa eläinvalintaan.</p>
+    </section>
+
+    <!-- Mieli -->
+    <section class="mind-card input-card">
+      <h3>Mielitreeni</h3>
+      <div class="grid">
+        <div class="group"><label for="mind-min">Mieli (min)</label><input id="mind-min" type="number" min="0" step="1" placeholder="0"/></div>
+      </div>
+      <div class="actions">
+        <button id="add-mind" class="ghost">Lisää mielitreeni</button>
+      </div>
+      <p class="hint">Meditaatio, hengitys, lukeminen, uni. Nostaa fokusta.</p>
+    </section>
+
     <!-- Stats & PI -->
     <section class="stats-card">
-      <h3>Tulokset & Painoindeksi</h3>
+      <h3>Tulokset & PI</h3>
       <div class="stats">
         <div><span>Jalat</span><strong id="legs-total">0</strong></div>
         <div><span>Työntö</span><strong id="push-total">0</strong></div>
         <div><span>Veto</span><strong id="pull-total">0</strong></div>
         <div><span>Core</span><strong id="core-total">0</strong></div>
+        <div><span>Mieli (min)</span><strong id="mind-total">0</strong></div>
         <div><span>Yhteensä</span><strong id="all-total">0</strong></div>
       </div>
 
@@ -83,36 +109,35 @@
         <div class="pi-card"><div class="pi-label">PI Työntö</div><div class="pi-bar"><div id="pi-push-bar" class="pi-fill"></div></div><div id="pi-push" class="pi-value">0.0</div></div>
         <div class="pi-card"><div class="pi-label">PI Veto</div><div class="pi-bar"><div id="pi-pull-bar" class="pi-fill"></div></div><div id="pi-pull" class="pi-value">0.0</div></div>
         <div class="pi-card"><div class="pi-label">PI Core</div><div class="pi-bar"><div id="pi-core-bar" class="pi-fill"></div></div><div id="pi-core" class="pi-value">0.0</div></div>
+        <div class="pi-card"><div class="pi-label">PI Mieli</div><div class="pi-bar"><div id="pi-mind-bar" class="pi-fill"></div></div><div id="pi-mind" class="pi-value">0.0</div></div>
       </div>
     </section>
 
-    <!-- History + Export -->
+    <!-- Historia + Export -->
     <section class="history-card">
-      <h3>Historia</h3>
+      <h3>Historia & Data</h3>
       <div id="history-list" class="history-list"></div>
       <div class="actions wrap">
         <button id="export-json" class="ghost">Lataa JSON</button>
         <button id="export-csv" class="ghost">Lataa CSV</button>
         <button id="backup-copy" class="ghost">Kopioi varmuuskopio</button>
-        <button id="import-data" class="ghost">Tuo varmuuskopio</button>
       </div>
-      <textarea id="import-area" class="import-area" placeholder="Liitä varmuuskopio (JSON) ja paina 'Tuo varmuuskopio'"></textarea>
     </section>
   </main>
 
-  <!-- Evolve toast -->
+  <!-- Toast -->
   <div id="evolve-toast" class="toast" role="status" aria-live="polite" hidden>
     <div class="toast-inner">
       <div id="toast-emoji" class="toast-emoji">✨</div>
       <div>
         <div class="toast-title">Uusi kehitysvaihe!</div>
-        <div id="toast-text" class="toast-text">Olet nyt Lisko</div>
+        <div id="toast-text" class="toast-text">Polkusi päivittyi</div>
       </div>
     </div>
   </div>
 
   <footer class="app-footer">
-    <p>© 2025 Eläinkunta • v5.0</p>
+    <p>© 2025 Eläinkunta • Evolve 7.0</p>
   </footer>
 
   <script src="./app.js"></script>
