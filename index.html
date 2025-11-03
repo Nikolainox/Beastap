@@ -78,4 +78,43 @@
         <div><span>Yhteensä</span><strong id="all-total">0</strong></div>
       </div>
 
-      <d
+      <div class="pi-wrap">
+        <div class="pi-card"><div class="pi-label">PI Jalat</div><div class="pi-bar"><div id="pi-legs-bar" class="pi-fill"></div></div><div id="pi-legs" class="pi-value">0.0</div></div>
+        <div class="pi-card"><div class="pi-label">PI Työntö</div><div class="pi-bar"><div id="pi-push-bar" class="pi-fill"></div></div><div id="pi-push" class="pi-value">0.0</div></div>
+        <div class="pi-card"><div class="pi-label">PI Veto</div><div class="pi-bar"><div id="pi-pull-bar" class="pi-fill"></div></div><div id="pi-pull" class="pi-value">0.0</div></div>
+        <div class="pi-card"><div class="pi-label">PI Core</div><div class="pi-bar"><div id="pi-core-bar" class="pi-fill"></div></div><div id="pi-core" class="pi-value">0.0</div></div>
+      </div>
+    </section>
+
+    <!-- History + Export -->
+    <section class="history-card">
+      <h3>Historia</h3>
+      <div id="history-list" class="history-list"></div>
+      <div class="actions wrap">
+        <button id="export-json" class="ghost">Lataa JSON</button>
+        <button id="export-csv" class="ghost">Lataa CSV</button>
+        <button id="backup-copy" class="ghost">Kopioi varmuuskopio</button>
+        <button id="import-data" class="ghost">Tuo varmuuskopio</button>
+      </div>
+      <textarea id="import-area" class="import-area" placeholder="Liitä varmuuskopio (JSON) ja paina 'Tuo varmuuskopio'"></textarea>
+    </section>
+  </main>
+
+  <!-- Evolve toast -->
+  <div id="evolve-toast" class="toast" role="status" aria-live="polite" hidden>
+    <div class="toast-inner">
+      <div id="toast-emoji" class="toast-emoji">✨</div>
+      <div>
+        <div class="toast-title">Uusi kehitysvaihe!</div>
+        <div id="toast-text" class="toast-text">Olet nyt Lisko</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>© 2025 Eläinkunta • v5.0</p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
