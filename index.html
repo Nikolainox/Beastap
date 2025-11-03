@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Eläinkunta – Evoluutio & Painoindeksi</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="app-header">
+    <h1>🪱 → 🧑 Eläinkunnan Evoluutio</h1>
+    <p>Syötä toistot lihasryhmittäin ja seuraa kehitystäsi. Kaikki tallentuu laitteellesi.</p>
+  </header>
+
+  <main class="container">
+    <section class="avatar-card" aria-live="polite">
+      <div id="avatar-emoji" class="avatar" aria-label="Nykyinen eläin">🪱</div>
+      <div class="avatar-info">
+        <h2 id="avatar-name">Mato</h2>
+        <div class="progress-wrap">
+          <label for="evo-progress">Evoluutio</label>
+          <progress id="evo-progress" value="0" max="100" aria-valuemin="0" aria-valuemax="100"></progress>
+          <span id="evo-level-text" class="muted">Taso 0 • 0%</span>
+        </div>
+        <p id="branch-text" class="muted">Polku: Tasapainoinen</p>
+        <p id="next-text" class="muted">Seuraavaksi: 🪸 Meduusa</p>
+      </div>
+    </section>
+
+    <section class="timeline">
+      <h3>Matka</h3>
+      <div id="timeline-bar" class="timeline-bar" aria-label="Evoluutiopolun aikajana"></div>
+    </section>
+
+    <section class="input-card">
+      <h3>Lisää toistoja</h3>
+      <div class="grid">
+        <div class="group">
+          <label for="legs">Jalat</label>
+          <input id="legs" type="number" inputmode="numeric" min="0" placeholder="0"/>
+        </div>
+        <div class="group">
+          <label for="push">Työntö (rinta/ojentaja)</label>
+          <input id="push" type="number" inputmode="numeric" min="0" placeholder="0"/>
+        </div>
+        <div class="group">
+          <label for="pull">Veto (selkä/hauis)</label>
+          <input id="pull" type="number" inputmode="numeric" min="0" placeholder="0"/>
+        </div>
+        <div class="group">
+          <label for="core">Keskivartalo</label>
+          <input id="core" type="number" inputmode="numeric" min="0" placeholder="0"/>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="add-reps">Tallenna</button>
+        <button id="reset" class="ghost">Nollaa</button>
+      </div>
+      <p class="hint">Vinkki: lämmittelyt ja kehonhuolto → lisää <strong>core</strong> tai <strong>jalat</strong> toistoja.</p>
+    </section>
+
+    <section class="stats-card">
+      <h3>Tulokset & Painoindeksi</h3>
+      <div class="stats">
+        <div><span>Jalat</span><strong id="legs-total">0</strong></div>
+        <div><span>Työntö</span><strong id="push-total">0</strong></div>
+        <div><span>Veto</span><strong id="pull-total">0</strong></div>
+        <div><span>Core</span><strong id="core-total">0</strong></div>
+        <div><span>Yhteensä</span><strong id="all-total">0</strong></div>
+      </div>
+
+      <div class="pi-wrap">
+        <div class="pi-card">
+          <div class="pi-label">PI Jalat</div>
+          <div class="pi-bar"><div id="pi-legs-bar" class="pi-fill" style="width:0%"></div></div>
+          <div id="pi-legs" class="pi-value">0.0</div>
+        </div>
+        <div class="pi-card">
+          <div class="pi-label">PI Työntö</div>
+          <div class="pi-bar"><div id="pi-push-bar" class="pi-fill" style="width:0%"></div></div>
+          <div id="pi-push" class="pi-value">0.0</div>
+        </div>
+        <div class="pi-card">
+          <div class="pi-label">PI Veto</div>
+          <div class="pi-bar"><div id="pi-pull-bar" class="pi-fill" style="width:0%"></div></div>
+          <div id="pi-pull" class="pi-value">0.0</div>
+        </div>
+        <div class="pi-card">
+          <div class="pi-label">PI Core</div>
+          <div class="pi-bar"><div id="pi-core-bar" class="pi-fill" style="width:0%"></div></div>
+          <div id="pi-core" class="pi-value">0.0</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="evolve-toast" class="toast" role="status" aria-live="polite" hidden>
+    <div class="toast-inner">
+      <div id="toast-emoji" class="toast-emoji">🦎</div>
+      <div>
+        <div class="toast-title">Uusi kehitysvaihe!</div>
+        <div id="toast-text" class="toast-text">Olet nyt Lisko</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>© 2025 Eläinkunta • v4.0</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
