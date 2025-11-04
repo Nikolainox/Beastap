@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Evolve v2.0 – Tribe</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <a class="pill" href="index.html">←</a>
+      <h1 class="brand">Tribe</h1>
+    </header>
+
+    <section class="center">
+      <div class="avatar" id="tribeAvatar">🛡️</div>
+      <h2 id="tribeName">—</h2>
+      <p class="muted">Heimopisteet kertyvät automaattisesti treeneistä.</p>
+      <div class="chips">
+        <span id="tribeXP">XP: 0</span>
+        <span id="tribeWeek">Viikko: —</span>
+      </div>
+    </section>
+
+    <section class="arena-wrap">
+      <div class="arena-card">
+        <h3>Oma Tribe-snapshot</h3>
+        <textarea id="myTribe" readonly rows="6"></textarea>
+        <button id="copyTribe" class="pill">Kopioi</button>
+      </div>
+
+      <div class="arena-card">
+        <h3>Lisää kavereita rankingiin</h3>
+        <textarea id="peers" rows="6" placeholder='Liitä kavereiden Tribe JSONit, yksi per rivi'></textarea>
+        <button id="rankBtn" class="primary">Laske ranking</button>
+      </div>
+
+      <div class="arena-card">
+        <h3>Viikon ranking</h3>
+        <div id="rankList" class="result-box">—</div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <small class="muted">Paikallinen ranking – ei kirjautumista</small>
+    </footer>
+  </main>
+
+  <script src="tribe.js"></script>
+</body>
+</html>
