@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Evolve v2.0 – Arena</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <a class="pill" href="index.html">←</a>
+      <h1 class="brand">Evolution Arena</h1>
+    </header>
+
+    <section class="arena-wrap">
+      <div class="arena-card">
+        <h3>1) Oma profiili</h3>
+        <textarea id="myProfile" readonly rows="6"></textarea>
+        <button id="copyMe" class="pill">Kopioi</button>
+      </div>
+
+      <div class="arena-card">
+        <h3>2) Vastustajan profiili</h3>
+        <textarea id="oppProfile" rows="6" placeholder='Liitä kaverisi JSON'></textarea>
+        <button id="fightBtn" class="primary">⚔️ Fight</button>
+      </div>
+
+      <div class="arena-card">
+        <h3>Tulos</h3>
+        <div id="resultBox" class="result-box">—</div>
+        <small class="muted" id="resultMeta"></small>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <small class="muted">Deterministinen ottelu (seed = profiilit)</small>
+    </footer>
+  </main>
+
+  <script src="fight.js"></script>
+</body>
+</html>
