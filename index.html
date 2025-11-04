@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Eläinkunta – Evolve 8.1</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Evolve v2.0 – Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="theme-speed">
-  <div id="bg" aria-hidden="true"></div>
-
-  <main class="game" role="main">
-    <header class="topbar">
-      <div class="brand">🪱→🧑 Evolve 8.1</div>
-      <nav class="menu">
-        <button id="export" title="Lataa JSON">📤</button>
-        <button id="reset" title="Nollaa kaikki">🔁</button>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1 class="brand">Evolve v2.0</h1>
+      <nav class="actions">
+        <a class="pill" href="fight.html">⚔️</a>
+        <a class="pill" href="tribe.html">🛡️</a>
+        <button id="btn-export" class="pill">📤</button>
+        <button id="btn-reset"  class="pill">↺</button>
       </nav>
     </header>
 
-    <section class="center" aria-live="polite">
-      <div id="avatar" class="avatar" role="img" aria-label="Nykyinen eläin">🪱</div>
-      <h1 id="animalName">Mato</h1>
-      <p id="track" class="muted">Polku: Tasapainoinen</p>
-      <progress id="bar" max="100" value="0" aria-label="Evoluutiopalkki"></progress>
-      <p id="hint" class="hint">Seuraavaksi: lisää nopeutta 🏃‍♂️</p>
-    </section>
-
-    <section class="buttons" aria-label="Toimintanapit">
-      <button data-act="legs"  aria-label="Jalat">🦵</button>
-      <button data-act="push"  aria-label="Työntö">💪</button>
-      <button data-act="pull"  aria-label="Veto">🧗‍♂️</button>
-      <button data-act="run"   aria-label="Juoksu">🏃‍♂️</button>
-      <button data-act="mind"  aria-label="Mielitreeni">🧘</button>
-    </section>
-
-    <footer class="foot">
-      <div class="chips">
+    <section class="center">
+      <div class="avatar" id="avatar">🪱</div>
+      <h2 id="animalName">Mato</h2>
+      <p id="caption" class="muted">Aloita napauttamalla liikkeitä</p>
+      <progress id="xpBar" max="100" value="0"></progress>
+      <div id="chips" class="chips">
         <span id="chip-legs">🦵 0</span>
         <span id="chip-push">💪 0</span>
         <span id="chip-pull">🧗‍♂️ 0</span>
         <span id="chip-run">🏃 0 km / 0 min</span>
         <span id="chip-mind">🧘 0 min</span>
       </div>
+    </section>
+
+    <section class="controls">
+      <button class="big" data-act="legs">🦵</button>
+      <button class="big" data-act="push">💪</button>
+      <button class="big" data-act="pull">🧗‍♂️</button>
+      <button class="big" data-act="run">🏃‍♂️</button>
+      <button class="big" data-act="mind">🧘</button>
+    </section>
+
+    <section class="stats">
+      <div><b>Nopeus</b><span id="s-val">0</span></div>
+      <div><b>Voima</b><span id="f-val">0</span></div>
+      <div><b>Kestävyys</b><span id="e-val">0</span></div>
+      <div><b>Ketteryys</b><span id="a-val">0</span></div>
+      <div><b>Mieli</b><span id="m-val">0</span></div>
+    </section>
+
+    <footer class="foot">
+      <small class="muted">© 2025 • Offline • localStorage • Mobile-optimized</small>
     </footer>
   </main>
 
   <div id="toast" class="toast" hidden><span id="toastText"></span></div>
-
   <script src="app.js"></script>
 </body>
 </html>
