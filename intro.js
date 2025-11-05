@@ -55,6 +55,7 @@ function main() {
   }
 
   btn.addEventListener("click", () => {
+    localStorage.setItem("evolveDNASeen", "1");
     window.location.href = "index.html";
   });
 }
