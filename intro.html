@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <title>Evolve · DNA</title>
+  <link rel="stylesheet" href="intro.css">
+</head>
+<body>
+  <main class="intro">
+    <h1>🧬 EVOLVE</h1>
+    <p class="muted">Sinun kromosomisi kehittyvät treeniesi mukaan.</p>
+
+    <section id="dna" class="dna">
+      <div class="gene"><span>⚡ Nopeus</span><progress id="gene-s" max="100" value="0"></progress></div>
+      <div class="gene"><span>💪 Voima</span><progress id="gene-f" max="100" value="0"></progress></div>
+      <div class="gene"><span>🔥 Kestävyys</span><progress id="gene-e" max="100" value="0"></progress></div>
+      <div class="gene"><span>🎯 Ketteryys</span><progress id="gene-a" max="100" value="0"></progress></div>
+      <div class="gene"><span>🧘 Mieli</span><progress id="gene-m" max="100" value="0"></progress></div>
+    </section>
+
+    <p id="status" class="status">Kerää energiaa…</p>
+    <button id="btn-continue" class="pill" hidden>➡️ Jatka evoluutioon</button>
+  </main>
+
+  <script src="intro.js"></script>
+</body>
+</html>
